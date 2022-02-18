@@ -1,0 +1,31 @@
+{
+  "name": "lru-cache",
+  "version": "0.0.1",
+  "description": "Least Recently Used Cache Implementation for TypeScript",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "start": "npm run build && node js/index.js",
+    "build": "date +\"%T\" && echo \"Cleaning...\" && rm -rf ./js && echo \"Compiling...\" && tsc && echo \"Done!\" && date +\"%T\" && echo \"~~~~~~DONE~~~~~~\n\"",
+    "compile": "npm run build && npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jellybeanci/lru-cache.git"
+  },
+  "keywords": [
+    "lru",
+    "cache",
+    "decorator",
+    "ts"
+  ],
+  "author": "\"Goksel KUCUKSAHIN <gokselkucuksahin@gmail.com> (https://github.com/GokselKUCUKSAHIN)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jellybeanci/lru-cache/issues"
+  },
+  "homepage": "https://github.com/jellybeanci/lru-cache#readme",
+  "dependencies": {
+    "object-hash": "^2.2.0"
+  }
+}
