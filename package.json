@@ -1,5 +1,5 @@
 {
-  "name": "lru-cache",
+  "name": "@jellybeanci/memoize",
   "version": "0.0.1",
   "description": "Least Recently Used Cache Implementation for TypeScript",
   "main": "index.js",
@@ -27,5 +27,6 @@
   "homepage": "https://github.com/jellybeanci/lru-cache#readme",
   "dependencies": {
     "object-hash": "^2.2.0"
-  }
+  },
+  "devDependencies": {}
 }
