@@ -1,18 +1,38 @@
-import {memoize} from "./memoize";
+import * as hash from "object-hash";
 
-class Main {
+export function memoize(limit: number = 128) {
+  if (limit < 1) throw Error("Limit cannot be non-positive number!");
+  const array: any[] = Array(limit);
+  const cache = new Map<string, number>();
+  let index = 0;
 
-  @memoize(5)
-  static fibonacci(n: number): bigint {
-    if (n < 2) return 1n;
-    return Main.fibonacci(n - 2) + Main.fibonacci(n - 1);
+  function updateIndex(): void {
+    index = (index + 1) % limit;
   }
 
-  static main() {
-    for (let i = 0; i < 20; i++) {
-      console.log(Main.fibonacci(i));
+  function setValue(key: string, value: any): void {
+    cache.set(key, index);
+    array[index] = value;
+    updateIndex();
+    return value;
+  }
+
+  function getValue(key: string): any {
+    const cachedIndex = cache.get(key);
+    return array[cachedIndex];
+  }
+
+  function hasValue(key: string): boolean {
+    return cache.has(key);
+  }
+
+  return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+    const original = descriptor.value;
+    descriptor.value = function (...args: any[]) {
+      const argHash: string = hash(args);
+      if (hasValue(argHash)) return getValue(argHash);
+      return setValue(argHash, original.apply(this, args));
     }
-  }
+    return descriptor;
+  };
 }
-
-Main.main();
