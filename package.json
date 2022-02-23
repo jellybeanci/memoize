@@ -19,14 +19,15 @@
     "decorator",
     "ts"
   ],
-  "author": "\"Goksel KUCUKSAHIN <gokselkucuksahin@gmail.com> (https://github.com/GokselKUCUKSAHIN)",
+  "author": "Goksel KUCUKSAHIN <gokselkucuksahin@gmail.com> (https://github.com/GokselKUCUKSAHIN)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jellybeanci/lru-cache/issues"
   },
   "homepage": "https://github.com/jellybeanci/lru-cache#readme",
   "dependencies": {
+    "@jellybeanci/random": "^0.1.1",
+    "@jellybeanci/sleep": "^0.0.1",
     "object-hash": "^2.2.0"
-  },
-  "devDependencies": {}
+  }
 }
