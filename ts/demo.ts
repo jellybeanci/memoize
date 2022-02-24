@@ -1,6 +1,7 @@
 import {memoize} from "./index";
 import {sleep} from "@jellybeanci/sleep";
 import {randomInt} from "@jellybeanci/random";
+import {tryCatch, tryCatchFunction} from "./try-catch";
 
 
 function tryCatchWrapper<T>(callback: (...args: any) => T): (...args: any) => [T | null, any] {
@@ -28,7 +29,6 @@ class Main {
         return n * 2;
     }
 
-
     static fiftyFifty(): number | any[] {
         const rand = randomInt(10);
         if (rand > 5) {
@@ -53,7 +53,7 @@ class Main {
     static async main() {
         // const [value, error] = this.fiftyFiftyImplicit();
 
-        const wrapedFifty = tryCatchWrapper(this.fiftyFifty);
+        const wrapedFifty = tryCatchFunction(this.fiftyFifty);
 
         const [value, error] = wrapedFifty();
         if (error) console.log("Error occured");
